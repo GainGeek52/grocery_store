@@ -1,0 +1,7 @@
+<%- include('../partials/header', { title: 'Order success' }) %>
+
+<h1>Thank you!</h1>
+<p>Your order <strong><%= order._id %></strong> has been received.</p>
+<p>Total paid: $<%= order.total.toFixed(2) %></p>
+
+<%- include('../partials/footer') %>

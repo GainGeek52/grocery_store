@@ -1,0 +1,19 @@
+<%- include('../partials/header', { title: 'Products' }) %>
+
+<h1>Products</h1>
+<div class="row">
+  <% products.forEach(function(p){ %>
+    <div class="col-md-4 mb-3">
+      <div class="card h-100">
+  <img src="<%= p.imageUrl || 'https://via.placeholder.com/300' %>" onerror="this.onerror=null;this.src='https://via.placeholder.com/300'" class="card-img-top" alt="<%= p.name %>">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title"><%= p.name %></h5>
+          <p class="card-text text-muted">Rs <%= p.price.toFixed(2) %></p>
+          <a href="/products/<%= p._id %>" class="btn btn-primary mt-auto">Details</a>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</div>
+
+<%- include('../partials/footer') %>

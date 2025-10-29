@@ -1,0 +1,22 @@
+<%- include('../partials/header', { title: 'Admin Login' }) %>
+
+<h1>Admin Login</h1>
+<% if (error) { %>
+  <div class="alert alert-danger" role="alert">
+    <%= error %>
+  </div>
+<% } %>
+<form action="/admin/login" method="post" class="col-md-6">
+  <div class="mb-3">
+    <label class="form-label">Email</label>
+    <input name="email" type="email" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Password</label>
+    <input name="password" type="password" class="form-control" required>
+  </div>
+  <button class="btn btn-primary">Login as Admin</button>
+  <a href="/auth/login" class="btn btn-link">Regular user login</a>
+</form>
+
+<%- include('../partials/footer') %>
