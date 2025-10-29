@@ -31,9 +31,14 @@ app.use(
     saveUninitialized: false,
     store: MongoStore.create({
       mongoUrl: process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/groc',
-      ttl: 14 * 24 * 60 * 60
+      ttl: 14 * 24 * 60 * 60,
+      autoRemove: 'native'
     }),
-    cookie: { maxAge: 1000 * 60 * 60 * 24 }
+    cookie: { 
+      maxAge: 1000 * 60 * 60 * 24,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax'
+    }
   })
 );
 
@@ -50,6 +55,12 @@ app.use('/cart', require('./routes/cart'));
 app.use('/admin', require('./routes/admin'));
 app.use('/auth', require('./routes/auth'));
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+}
+
+// Export the Express app for Vercel
+module.exports = app;
