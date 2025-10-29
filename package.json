@@ -1,7 +1,7 @@
 {
   "name": "groc-store",
   "engines": {
-    "node": "18.x"
+    "node": "22.x"
   },
   "version": "0.1.0",
   "description": "Simple grocery store app (Node, Express, MongoDB, EJS)",
